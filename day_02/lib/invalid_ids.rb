@@ -4,13 +4,13 @@
 # Class for InvalidIDS
 class InvalidIds
   def initialize
-    @matches = []
+    @invalid_ids = []
   end
 
   def find(range)
     range.each do |num|
       digits = num.to_s.chars
-      @matches.push(num) if digits.first == digits.last
+      @invalid_ids.push(num) if digits.first == digits.last
     end
 
     get_length
@@ -19,6 +19,6 @@ class InvalidIds
   private
 
   def get_length
-    @matches.length
+    @invalid_ids.length
   end
 end
