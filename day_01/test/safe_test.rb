@@ -3,25 +3,28 @@
 require 'minitest/autorun'
 require_relative '../lib/safe'
 
-ROTATIONS_1 = %w[
+ROTATIONS = %w[
   L68 L30 R48 L5 R60 L55 L1 L99 R14 L82
 ].freeze
 
-ROTATIONS_2 = %w[
-  R18 L68
-].freeze
-
-# Test Safe.rotate_password counts how many times the dial hits 0.
-class SafeTest < Minitest::Test
-  def test_rotate_password_first
+describe 'day_01' do
+  it 'should start with 50 as starting point' do
     safe = Safe.new
 
-    assert_equal 3, safe.rotate_password(*ROTATIONS_1)
+    assert_equal 50, safe.steering_wheel
   end
 
-  def test_rotate_password_second
-    safe_second = Safe.new
+  it 'should land on 0 once when giving the dial R18 and L68' do
+    few_rotations = %w[R18 L68]
 
-    assert_equal 1, safe_second.rotate_password(*ROTATIONS_2)
+    safe = Safe.new
+
+    assert_equal 1, safe.rotate_password(*few_rotations)
+  end
+
+  it 'should land on 3 times if given full dial rotations' do
+    safe = Safe.new
+
+    assert_equal 3, safe.rotate_password(*ROTATIONS)
   end
 end

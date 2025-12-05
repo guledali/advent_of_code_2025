@@ -4,6 +4,8 @@ STARTING_POINT_WHEEL = 50
 
 # Safe class
 class Safe
+  attr_reader :steering_wheel
+
   def initialize
     @steering_wheel = STARTING_POINT_WHEEL
   end
