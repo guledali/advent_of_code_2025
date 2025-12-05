@@ -3,6 +3,8 @@
 
 # Class for InvalidIDS
 class InvalidIds
+  attr_reader :invalid_ids
+
   def initialize
     @invalid_ids = []
   end
@@ -14,7 +16,7 @@ class InvalidIds
       repeated_twice(num, digits)
     end
 
-    get_length
+    invalid_ids.length
   end
 
   private
@@ -29,9 +31,5 @@ class InvalidIds
 
       @invalid_ids.push(num) if first == second && second == third
     end
-  end
-
-  def get_length
-    @invalid_ids.length
   end
 end
