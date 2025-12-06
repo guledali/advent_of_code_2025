@@ -1,0 +1,11 @@
+# Rakefile
+
+require 'rake/testtask'
+
+Rake::TestTask.new do |t|
+  # Look for all *_test.rb files under test/ recursively
+  t.pattern = 'test/**/*_test.rb'
+end
+
+# Set the default task to run tests
+task default: :test
