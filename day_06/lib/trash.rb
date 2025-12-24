@@ -7,11 +7,13 @@ require_relative './base'
 class Trash < Base
   # Create methods programmatically
   def self.organize_trashes(columns)
-    columns.each do |col_name|
+    columns.each_with_index do |col_name, idx|
       next if method_defined?(col_name)
 
+      index = idx
+
       define_method(col_name) do
-        []
+        Trash.data.map { |row| row[index] }
       end
     end
   end
