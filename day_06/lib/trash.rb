@@ -5,6 +5,17 @@ require_relative './base'
 
 # Class for Trash
 class Trash < Base
+  # Create methods programmatically
+  def self.organize_trashes(columns)
+    columns.each do |col_name|
+      next if method_defined?(col_name)
+
+      define_method(col_name) do
+        []
+      end
+    end
+  end
+
   def throw_trash(list, operator)
     total = initial_total(operator)
 
@@ -23,6 +34,7 @@ class Trash < Base
 
   def throwing_amount(total, number, operator)
     case operator
+
     when '+'
       total + number
     when '-'
