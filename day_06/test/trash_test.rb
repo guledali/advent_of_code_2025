@@ -16,20 +16,28 @@ describe 'Trash' do
   end
 
   it 'should add numbers when operator is +' do
-    result = @trash.throw_trash([3, 4, 5], '+')
-
-    assert_equal 12, result
+    assert_equal 12, @trash.throw_trash([3, 4, 5], '+')
   end
 
   it 'should multiplies numbers when operator is *' do
-    result = @trash.throw_trash([2, 3, 4], '*')
-
-    assert_equal 24, result
+    assert_equal 24, @trash.throw_trash([2, 3, 4], '*')
   end
 
   it 'should have one column named first_column' do
     Trash.organize_trashes(COLUMNS)
 
     assert_respond_to @trash, :first_column
+  end
+
+  it 'should return the correct format' do
+    assert_equal [[123, 45, 6], '*'], @trash.clean_trashes([123, 45, 6, '*'])
+  end
+
+  it 'should count the amount of total trashes' do
+    Trash.organize_trashes(COLUMNS)
+
+    first_column = @trash.first_column
+
+    assert_equal 33_210, @trash.total_trashes(first_column)
   end
 end

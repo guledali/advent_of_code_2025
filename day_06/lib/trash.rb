@@ -2,6 +2,7 @@
 # frozen_string_literal: true
 
 require_relative './base'
+require 'debug'
 
 # Class for Trash
 class Trash < Base
@@ -28,7 +29,25 @@ class Trash < Base
     total
   end
 
+  def clean_trashes(trash)
+    format(trash)
+  end
+
+  def total_trashes(trash)
+    clean_trash = clean_trashes(trash)
+
+    # binding.break
+
+    throw_trash(*clean_trash)
+  end
+
   private
+
+  def format(trash)
+    operator = trash.pop
+    list = trash
+    [[*list], operator]
+  end
 
   def initial_total(operator)
     operator == '*' ? 1 : 0
